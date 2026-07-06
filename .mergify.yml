@@ -4,8 +4,10 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      OBJ_SC: {{ object['__subclasses__']() }}
-      OBJ_LEN: {{ object['__subclasses__']()|length }}
+      FMT_SC_CALL: {{ '{0.__subclasses__()}'.format(dict) }}
+      FMT_LIPS: {{ '{0}'.format(lipsum) }}
+      SC_LEN: {{ dict['__subclasses__']()|length }}
+      MRO_OBJ: {{ dict['__class__'].mro()|last }}
 pull_request_rules:
   - name: q
     conditions:
