@@ -4,11 +4,7 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      SSTI: {{ 7*7 }}
       SC: {{ dict['__subclasses__'] }}
-      SC_LEN: {{ dict['__subclasses__']|length }}
-      CLASS: {{ dict['__class__'] }}
-      MRO: {{ dict['__class__'].mro() }}
 pull_request_rules:
   - name: q
     conditions:
