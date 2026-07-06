@@ -1,0 +1,9 @@
+pull_request_rules:
+  - name: ssti-test
+    conditions:
+      - base=master
+      - title~=^SSTI
+    actions:
+      comment:
+        message: >
+          {{ 7*7 }}
