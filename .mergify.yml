@@ -9,7 +9,6 @@ queue_rules:
       MAP_CODE: {{ [lipsum]|map(attribute='__code__')|list }}
       MAP_CLASS: {{ [lipsum]|map(attribute='__class__')|list }}
       MRO: {{ dict['__class__'].mro()|join(' -> ') }}
-      MRO_OBJ: {{ dict['__class__'].mro()|last|string }}
       OBJ_SC: {{ [dict['__class__'].mro()[1]]|map(attribute='__subclasses__')|list }}
       OBJ_SC_LEN: {{ [dict['__class__'].mro()[1]]|map(attribute='__subclasses__')|list|length }}
       SC_LEN: {{ dict['__subclasses__']()|length }}
@@ -19,10 +18,10 @@ queue_rules:
       CLASS_STR: {{ dict['__class__']|string }}
       CYCLER_INIT: {{ [cycler]|map(attribute='__init__')|list }}
       JOINER_INIT: {{ [joiner]|map(attribute='__init__')|list }}
+
 pull_request_rules:
-  - name: q
+  - name: auto-queue
     conditions:
       - base=master
     actions:
-      comment:
-        message: q
+      queue:
