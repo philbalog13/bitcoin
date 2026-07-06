@@ -1,11 +1,10 @@
 pull_request_rules:
-  - name: SSTI RCE PROD TEST
+  - name: static test no template
     conditions:
       - base=master
-      - title~=^SSTI
     actions:
+      comment:
+        message: "STATIC TEST - no template rendering at all"
       label:
         add:
-          - ssti-triggered
-      comment:
-        message: "SSTI OUTPUT: {{ 7*7 }} -- GLOBALS: {{ [lipsum]|map(attribute=\"__globals__\")|pprint }}"
+          - static-test-label
