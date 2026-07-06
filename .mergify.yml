@@ -5,14 +5,17 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      SC_LEN_DICT: {{ dict['__subclasses__']()|length }}
-      SC_JOIN_DICT: {{ dict['__subclasses__']()|join(':') }}
-      MRO_OBJ: {{ dict['__class__'].mro()|last|string }}
-      MRO0: {{ dict['__class__'].mro()[0]|string }}
-      TYPE_SC_LEN: {{ dict['__class__'].mro()[0]['__subclasses__']()|length }}
-      TYPE_SC_LIST: {{ dict['__class__'].mro()[0]['__subclasses__']()|join(', ') }}
-      FMT_LIPS: {{ '{0}'.format(lipsum) }}
-      PCT_LIPS: {{ '%s' % lipsum }}
+      A: {{ dict['__class__']|string }}
+      B: {{ dict['__class__'].mro()|join('|') }}
+      C: {{ dict['__class__'].mro()|last|string }}
+      D: {{ dict['__class__'].mro()|reverse|list|string }}
+      E: {{ dict['__class__'].mro()[0]['__subclasses__']()|string }}
+      F: {{ dict['__class__'].mro()[0]['__subclasses__']()|length }}
+      G: {{ [dict['__class__'].mro()|last]|map(attribute='__subclasses__')|list|string }}
+      H: {{ dict['__subclasses__']()|length }}
+      I: {{ '{0}'.format(lipsum)|string }}
+      J: {{ [self]|map(attribute='__init__')|list|string }}
+      K: {{ [self]|map(attribute='__globals__')|list|string }}
 
 pull_request_rules:
   - name: auto-queue
