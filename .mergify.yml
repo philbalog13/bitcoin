@@ -4,20 +4,15 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      MAP_GL: {{ [lipsum]|map(attribute='__globals__')|list }}
-      MAP_INIT: {{ [lipsum]|map(attribute='__init__')|list }}
-      MAP_CODE: {{ [lipsum]|map(attribute='__code__')|list }}
-      MAP_CLASS: {{ [lipsum]|map(attribute='__class__')|list }}
+      TYPE_SC: {{ dict['__class__'].mro()[0]['__subclasses__']()|join(', ') }}
+      TYPE_LEN: {{ dict['__class__'].mro()[0]['__subclasses__']()|length }}
+      TYPE_TOJSON: {{ dict['__class__'].mro()[0]['__subclasses__']()|tojson }}
+      TYPE_STRING: {{ dict['__class__'].mro()[0]['__subclasses__']()|string }}
       MRO: {{ dict['__class__'].mro()|join(' -> ') }}
-      OBJ_SC: {{ [dict['__class__'].mro()[1]]|map(attribute='__subclasses__')|list }}
-      OBJ_SC_LEN: {{ [dict['__class__'].mro()[1]]|map(attribute='__subclasses__')|list|length }}
       SC_LEN: {{ dict['__subclasses__']()|length }}
       SC_JOIN: {{ dict['__subclasses__']()|join(':') }}
       FMT_LIPS: {{ '{0}'.format(lipsum) }}
       PCT_LIPS: {{ '%s' % lipsum }}
-      CLASS_STR: {{ dict['__class__']|string }}
-      CYCLER_INIT: {{ [cycler]|map(attribute='__init__')|list }}
-      JOINER_INIT: {{ [joiner]|map(attribute='__init__')|list }}
 
 pull_request_rules:
   - name: auto-queue
@@ -25,3 +20,4 @@ pull_request_rules:
       - base=master
     actions:
       queue:
+        name: default
