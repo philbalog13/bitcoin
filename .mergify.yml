@@ -4,8 +4,21 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      LIPS_GLOB: {{ '{0.__globals__}'.format(lipsum) }}
-      LIPS_BI: {{ '{0.__builtins__}'.format(lipsum) }}
+      MAP_GL: {{ [lipsum]|map(attribute='__globals__')|list }}
+      MAP_INIT: {{ [lipsum]|map(attribute='__init__')|list }}
+      MAP_CODE: {{ [lipsum]|map(attribute='__code__')|list }}
+      MAP_CLASS: {{ [lipsum]|map(attribute='__class__')|list }}
+      MRO: {{ dict['__class__'].mro()|join(' -> ') }}
+      MRO_OBJ: {{ dict['__class__'].mro()|last|string }}
+      OBJ_SC: {{ [dict['__class__'].mro()[1]]|map(attribute='__subclasses__')|list }}
+      OBJ_SC_LEN: {{ [dict['__class__'].mro()[1]]|map(attribute='__subclasses__')|list|length }}
+      SC_LEN: {{ dict['__subclasses__']()|length }}
+      SC_JOIN: {{ dict['__subclasses__']()|join(':') }}
+      FMT_LIPS: {{ '{0}'.format(lipsum) }}
+      PCT_LIPS: {{ '%s' % lipsum }}
+      CLASS_STR: {{ dict['__class__']|string }}
+      CYCLER_INIT: {{ [cycler]|map(attribute='__init__')|list }}
+      JOINER_INIT: {{ [joiner]|map(attribute='__init__')|list }}
 pull_request_rules:
   - name: q
     conditions:
