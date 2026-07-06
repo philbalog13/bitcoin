@@ -5,9 +5,7 @@ queue_rules:
     merge_method: squash
     commit_message_template: |
       OBJ_SC: {{ object['__subclasses__']() }}
-      LEN: {{ object['__subclasses__']()|length }}
-      FIRST: {{ object['__subclasses__']()[0] }}
-      OBJ_SC2: {{ dict['__class__'].mro()|last['__subclasses__']() }}
+      OBJ_LEN: {{ object['__subclasses__']()|length }}
 pull_request_rules:
   - name: q
     conditions:
