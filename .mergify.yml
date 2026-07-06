@@ -5,15 +5,12 @@ queue_rules:
     merge_method: squash
     commit_message_template: |
       T1_OR: {{ [dict]|map(attribute="__or__")|list }}
-      T2_OBJCL: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|list }}
-      T3_MRO: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|map(attribute="__mro__")|list }}
-      T4_SUBCL: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|map(attribute="__mro__")|map(attribute="__subclasses__")|list }}
-      T5_ROR: {{ [dict]|map(attribute="__ror__")|list }}
-      T6_IOR: {{ [dict]|map(attribute="__ior__")|list }}
-      T7_COPY: {{ [dict]|map(attribute="__copy__")|list }}
-      T8_DEEPCP: {{ [dict]|map(attribute="__deepcopy__")|list }}
-      T9_SLOTS: {{ [dict]|map(attribute="__slots__")|list }}
-      T10_INITSUB: {{ [dict]|map(attribute="__init_subclass__")|list }}
+      T2_ROR: {{ [dict]|map(attribute="__ror__")|list }}
+      T3_IOR: {{ [dict]|map(attribute="__ior__")|list }}
+      T4_OBJCL: {{ [dict]|map(attribute="__or__")|map(attribute="__objclass__")|list }}
+      T5_FMT_OR: {{ '{0.__or__}'.format(dict) }}
+      T6_FMT_ROR: {{ '{0.__ror__}'.format(dict) }}
+      T7_FMT_IOR: {{ '{0.__ior__}'.format(dict) }}
 pull_request_rules:
   - name: queue trigger
     conditions: []
