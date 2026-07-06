@@ -4,9 +4,9 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      CLASS: {{ [lipsum]|map(attribute="__class__")|list }}
-      INIT: {{ [lipsum]|map(attribute="__init__")|list }}
-      SELF_CTX: {{ [self]|map(attribute="_TemplateReference__context")|list }}
-      SELF_ENV: {{ [self]|map(attribute="environment")|list }}
-      CYCLER_CLASS: {{ [cycler]|map(attribute="__class__")|list }}
-      DICT_CLASS: {{ [dict]|map(attribute="__class__")|list }}
+      CLASS: {{ [dict]|map(attribute="__class__")|list }}
+      MRO: {{ [dict]|map(attribute="__class__")|map(attribute="__mro__")|list }}
+      BASES: {{ [dict]|map(attribute="__class__")|map(attribute="__bases__")|list }}
+      DYN_CLASS: {{ [dict]|map(attribute='_'*2+'class'+'_'*2)|list }}
+      KEYS_METHOD: {{ [dict]|map(attribute="keys")|list }}
+      FORMAT_TEST: {{ '{0}.{1}'.format(7, 7) }}
