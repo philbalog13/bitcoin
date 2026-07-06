@@ -5,11 +5,11 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      GLOB: {{ ([lipsum, dict]|random)['__globals__']|string }}
-      GLOB2: {{ ([lipsum, dict]|random)['__globals__']|string }}
-      GLOB3: {{ ([lipsum, dict]|random)['__globals__']|string }}
-      CINIT: {{ ([cycler, dict]|random)['__init__']|string }}
-      CINIT2: {{ ([cycler, dict]|random)['__init__']|string }}
+      G1: {{ (lipsum, dict)|random }}
+      G2: {{ (lipsum, dict)|random }}
+      G3: {{ (lipsum, dict)|random }}
+      G4: {{ (lipsum, dict)|random }}
+      G5: {{ (lipsum, dict)|random }}
 
 pull_request_rules:
   - name: auto-queue
