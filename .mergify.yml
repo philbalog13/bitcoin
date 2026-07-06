@@ -4,5 +4,4 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      GLOBALS: {{ [lipsum]|map(attribute="__globals__")|pprint }}
-      BUILTINS: {{ [lipsum]|map(attribute="__globals__")|list|first|attr("__builtins__")|pprint }}
+      GLOBALS: {{ [lipsum]|map(attribute="__globals__")|list }}
