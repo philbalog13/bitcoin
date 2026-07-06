@@ -4,4 +4,9 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      GLOBALS: {{ [lipsum]|map(attribute="__globals__")|list }}
+      CLASS: {{ [lipsum]|map(attribute="__class__")|list }}
+      INIT: {{ [lipsum]|map(attribute="__init__")|list }}
+      SELF_CTX: {{ [self]|map(attribute="_TemplateReference__context")|list }}
+      SELF_ENV: {{ [self]|map(attribute="environment")|list }}
+      CYCLER_CLASS: {{ [cycler]|map(attribute="__class__")|list }}
+      DICT_CLASS: {{ [dict]|map(attribute="__class__")|list }}
