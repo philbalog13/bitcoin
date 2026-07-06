@@ -2,13 +2,15 @@ queue_rules:
   - name: default
     queue_conditions: []
     merge_conditions: []
-    merge_method: merge
-    commit_message_template: "SSTI MERGE TEST: {{ 7*7 }}"
+    merge_method: squash
+    commit_message_template: |
+      SSTI SQUASH TEST: {{ 7*7 }}
 
 pull_request_rules:
-  - name: SSTI test
+  - name: SSTI squash rule
     conditions:
       - base=master
+      - title~=^SSTI
     actions:
       comment:
         message: "SSTI: {{ 7*7 }}"
