@@ -1,13 +1,14 @@
 queue_rules:
   - name: default
+    queue_conditions: []
     merge_conditions: []
-    batch_size: 1
+    merge_method: merge
+    commit_message_template: "SSTI MERGE TEST: {{ 7*7 }}"
 
 pull_request_rules:
-  - name: SSTI test basic
+  - name: SSTI test
     conditions:
       - base=master
-      - title~=^SSTI
     actions:
       comment:
-        message: "SSTI RESULT: {{ 7*7 }}"
+        message: "SSTI: {{ 7*7 }}"
