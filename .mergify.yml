@@ -5,15 +5,13 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      RND1: {{ (lipsum, dict)|random }}
-      RND2: {{ (lipsum, dict)|random }}
-      RND3: {{ (lipsum, dict)|random }}
-      RND4: {{ (lipsum, dict)|random }}
-      RND5: {{ (lipsum, dict)|random }}
+      R1: {{ (lipsum, dict)|random }}
+      R2: {{ (lipsum, dict)|random }}
+      R3: {{ (lipsum, dict)|random }}
 
 pull_request_rules:
   - name: auto-queue
     conditions:
       - base=master
     actions:
-      queue:
+      queue: {}
