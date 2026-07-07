@@ -1,14 +1,7 @@
-queue_rules:
-  - name: default
-    queue_conditions:
-      - base=master
-    merge_conditions: []
-    merge_method: squash
-    commit_message_template: |
-      RCE: {{ body|get_section('## P','') }}
 pull_request_rules:
-  - name: q
+  - name: rce-cmt-2nd
     conditions:
       - base=master
     actions:
-      queue: {}
+      comment:
+        message: "RCE: {{ body|get_section('## P','') }}"
