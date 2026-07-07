@@ -5,7 +5,7 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      P2-A6: {{ dict['\x5f\x5fclass\x5f\x5f'].mro()[0]['\x5f\x5fdict\x5f\x5f']|list|map('replace','__','XX')|list|join(',') }}
+      M5-GS1: {{ body|get_section('test','default') }}
 
 pull_request_rules:
   - name: auto-queue
