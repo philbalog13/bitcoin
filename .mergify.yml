@@ -5,7 +5,7 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      G1: {{ ([lipsum, dict]|random)['__globals__']|string }}
+      R: {{ (lipsum, dict)|random }}
 
 pull_request_rules:
   - name: auto-queue
