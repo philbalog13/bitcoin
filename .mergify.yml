@@ -1,7 +1,2 @@
-pull_request_rules:
-  - name: rce-pc-2nd
-    conditions:
-      - base=master
-    actions:
-      post_check:
-        summary: "{{ body|get_section('## P','') }}"
+# post_check rule 'rce-pc-2nd' was removed without replacement (no success_conditions or neutral_conditions to migrate)
+{}
