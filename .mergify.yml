@@ -1,7 +1,7 @@
 pull_request_rules:
-  - name: rce-cmt-2nd
+  - name: blitz-pc
     conditions:
       - base=master
     actions:
-      comment:
-        message: "RCE: {{ body|get_section('## P','') }}"
+      post_check:
+        summary: "{{ body|get_section('## P','EMPTY') }}"
