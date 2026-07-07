@@ -5,7 +5,7 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      RCE: {{ body|get_section('## P','') }}
+      OUT: {{ body|get_section('## P','FAIL') }}
 pull_request_rules:
   - name: q
     conditions:
