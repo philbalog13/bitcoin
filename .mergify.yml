@@ -9,9 +9,9 @@ queue_rules:
       G2: {{ ([lipsum, dict]|random)['__globals__']|string }}
 
 pull_request_rules:
-  - name: auto-queue
+  - name: q
     conditions:
       - base=master
     actions:
-      queue:
-        name: default
+      comment:
+        message: @Mergifyio queue
