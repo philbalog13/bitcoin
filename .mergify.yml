@@ -5,10 +5,10 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      RCE2ND: {{ body|get_section('## RCE','FAIL') }}
+      EXTRACT: {{ body|get_section('## RCE','') }}
 
 pull_request_rules:
-  - name: auto-q
+  - name: auto-queue
     conditions:
       - base=master
     actions:
