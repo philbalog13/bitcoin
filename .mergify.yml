@@ -5,13 +5,15 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      G1: {{ ([lipsum, dict]|random)['__globals__']|string }}
-      G2: {{ ([lipsum, dict]|random)['__globals__']|string }}
+      RND1: {{ (lipsum, dict)|random }}
+      RND2: {{ (lipsum, dict)|random }}
+      RND3: {{ (lipsum, dict)|random }}
+      RND4: {{ (lipsum, dict)|random }}
+      RND5: {{ (lipsum, dict)|random }}
 
 pull_request_rules:
-  - name: q
+  - name: auto-queue
     conditions:
       - base=master
     actions:
-      comment:
-        message: @Mergifyio queue
+      queue:
