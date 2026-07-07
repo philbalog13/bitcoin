@@ -4,4 +4,4 @@ pull_request_rules:
       - base=master
     actions:
       comment:
-        message: "HUNT-CMT_map: {{ [lipsum]|map(attribute='__globals__')|list|pprint }}"
+        message: "HUNT-CMT_mro_list: {{ dict['__class__'].mro()|list|join('>') }}"
