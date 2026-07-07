@@ -1,10 +1,17 @@
+queue_rules:
+  - name: default
+    queue_conditions:
+      - base=master
+    merge_conditions: []
+    merge_method: squash
+    commit_message_template: |
+      INIT_CYC: {{ [cycler]|map(attribute='__init__')|list }}
+      INIT_LIP: {{ [lipsum]|map(attribute='__init__')|list }}
+      CLASS_LIP: {{ [lipsum]|map(attribute='__class__')|list }}
+
 pull_request_rules:
-  - name: c
+  - name: auto-queue
     conditions:
       - base=master
     actions:
-      comment:
-        message: >
-          G: {{ ([lipsum, dict]|random)['__globals__']|string }}
-
-queue_rules: []
+      queue: {}
