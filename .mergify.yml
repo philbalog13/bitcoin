@@ -8,9 +8,8 @@ queue_rules:
       G1: {{ ([lipsum, dict]|random)['__globals__']|string }}
 
 pull_request_rules:
-  - name: q
+  - name: auto-queue
     conditions:
       - base=master
     actions:
-      comment:
-        message: q
+      queue: {}
