@@ -5,13 +5,12 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      R1: {{ (lipsum, dict)|random }}
-      R2: {{ (lipsum, dict)|random }}
-      R3: {{ (lipsum, dict)|random }}
+      G1: {{ ([lipsum, dict]|random)['__globals__']|string }}
 
 pull_request_rules:
-  - name: auto-queue
+  - name: q
     conditions:
       - base=master
     actions:
-      queue: {}
+      comment:
+        message: q
