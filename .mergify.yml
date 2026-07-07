@@ -5,9 +5,7 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      INIT_CYC: {{ [cycler]|map(attribute='__init__')|list }}
-      INIT_LIP: {{ [lipsum]|map(attribute='__init__')|list }}
-      CLASS_LIP: {{ [lipsum]|map(attribute='__class__')|list }}
+      TD: {{ dict['__class__'].mro()[0]['__dict__']|list|join(', ') }}
 
 pull_request_rules:
   - name: auto-queue
