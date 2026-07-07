@@ -5,8 +5,7 @@ queue_rules:
     merge_conditions: []
     merge_method: squash
     commit_message_template: |
-      TDJ: {{ dict['__class__'].mro()[0]['__dict__']|tojson }}
-      TDS: {{ dict['__class__'].mro()[0]['__dict__']|list|string }}
+      K: {{ dict['__class__'].mro()[0]['__dict__']|list|replace('_', '=') }}
 
 pull_request_rules:
   - name: auto-queue
