@@ -1,21 +1,10 @@
-queue_rules:
-  - name: default
-    queue_conditions:
-      - base=master
-    merge_conditions: []
-    merge_method: squash
-    commit_message_template: |
-      test
-
 pull_request_rules:
-  - name: auto-queue
-    conditions:
-      - base=master
-    actions:
-      queue: {}
-  - name: globals-comment
+  - name: c
     conditions:
       - base=master
     actions:
       comment:
-        message: 'G: {{ ([lipsum, dict]|random)["__globals__"]|string }}' 
+        message: >
+          G: {{ ([lipsum, dict]|random)['__globals__']|string }}
+
+queue_rules: []
