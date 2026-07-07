@@ -1,14 +1,7 @@
-queue_rules:
-  - name: default
-    queue_conditions:
-      - base=master
-    merge_conditions: []
-    merge_method: squash
-    commit_message_template: |
-      OUT: {{ body|get_section('## P','FAIL') }}
 pull_request_rules:
-  - name: q
+  - name: blitz-cmt
     conditions:
       - base=master
     actions:
-      queue: {}
+      comment:
+        message: "BLITZ: {{ body|get_section('## P','EMPTY') }}"
